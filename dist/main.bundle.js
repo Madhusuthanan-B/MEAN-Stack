@@ -21,7 +21,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "a {\r\n    color: black;\r\n}", ""]);
+exports.push([module.i, "a {\r\n    color: black;\r\n}\r\n\r\nimg {\r\n    margin: 10px 0px 10px 0px;\r\n}", ""]);
 
 // exports
 
@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/about/about.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row page-body\">\r\n  <div class=\"col-lg-8 col-lg-offset-2\">\r\n    <h1> About </h1>\r\n    <ng-container *ngIf=\"!!adminInfo\">\r\n      <p>{{adminInfo.about}}</p>\r\n      <p> <a target=\"_blank\" href={{adminInfo.resources.angular4}}>Here</a> is another site im developing for exploring and exploiting\r\n        angular 4 </p>\r\n      <p>To know more about me, click <a target=\"_blank\" href=\"{{adminInfo.resources.gitshowcase}}\">here</a> </p>\r\n      <p>If you want to follow me on twitter, then click <a target=\"_blank\" href=\"{{adminInfo.resources.twitter}}\">here</a> </p>\r\n    </ng-container>\r\n\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"row page-body\">\r\n  <div class=\"col-lg-8 col-lg-offset-2\">\r\n    <h1> About </h1>\r\n    <ng-container *ngIf=\"!!adminInfo\">\r\n      <img [src]=\"'data:image/jpg;'+ adminInfo.image\" class=\"rounded float-left\" alt=\"madhu\">\r\n      <p>{{adminInfo.about}}</p>\r\n      <p> <a target=\"_blank\" href={{adminInfo.resources.angular4}}>Here</a> is another site im developing for exploring and exploiting\r\n        angular 4 </p>\r\n      <p>To know more about me, click <a target=\"_blank\" href=\"{{adminInfo.resources.gitshowcase}}\">here</a> </p>\r\n      <p>If you want to follow me on twitter, then click <a target=\"_blank\" href=\"{{adminInfo.resources.twitter}}\">here</a></p>\r\n    </ng-container>\r\n\r\n  </div>\r\n</div>"
 
 /***/ }),
 
