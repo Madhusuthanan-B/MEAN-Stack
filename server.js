@@ -42,7 +42,7 @@ app.get('/info', function (req, res) {
 });
 
 var getAdminData = function (db, callback) {
-    var collection = db.collection('Admin');
+    var collection = db.collection('about_admin');
     collection.find({}).toArray(function (err, docs) {
         callback(docs);
     });
