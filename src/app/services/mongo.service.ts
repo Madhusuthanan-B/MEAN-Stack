@@ -9,14 +9,10 @@ const DEV_SERVICE_URL = 'http://localhost:3000/info';
 @Injectable()
 export class MongoService {
 
-  url: string;
-
-  constructor(private http: Http) {
-    this.url = environment.production ? PROD_SERVICE_URL : DEV_SERVICE_URL;
-  }
+  constructor(private http: Http) { }
 
   getAdminInfo() {
-    return this.http.get(this.url).map(this.extractData);
+    return this.http.get(PROD_SERVICE_URL).map(this.extractData);
   }
 
   private extractData(res: Response) {

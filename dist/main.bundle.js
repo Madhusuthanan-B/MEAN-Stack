@@ -483,9 +483,8 @@ NavBarModule = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MongoService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -498,16 +497,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var PROD_SERVICE_URL = 'https://mean-heroku-app.herokuapp.com/info';
 var DEV_SERVICE_URL = 'http://localhost:3000/info';
 var MongoService = (function () {
     function MongoService(http) {
         this.http = http;
-        this.url = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].production ? PROD_SERVICE_URL : DEV_SERVICE_URL;
     }
     MongoService.prototype.getAdminInfo = function () {
-        return this.http.get(this.url).map(this.extractData);
+        return this.http.get(PROD_SERVICE_URL).map(this.extractData);
     };
     MongoService.prototype.extractData = function (res) {
         return res.json();
