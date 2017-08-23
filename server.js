@@ -1,13 +1,50 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
+const bodyParser = require('body-parser');
+const router = express.Router();
+const url =  process.env.MONGOLAB_URI || 'mongodb://localhost:27017/UsersDB';
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/dist'));
 
 app.listen(process.env.PORT || 8080);
 
-app.get('/*', (req, res) => {
+app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
+
+var port = process.env.PORT || 3000;
+
+app.get('/info', function (req, res) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            res.send('Connection failed');
+        } else {
+            getAdminData(db, function (result) {
+                res.send(result);
+                db.close();
+            });
+        }
+    });
+
+});
+
+var getAdminData = function (db, callback) {
+    var collection = db.collection('Admin');
+    collection.find({}).toArray(function (err, docs) {
+        callback(docs);
+    });
+}
+app.listen(port);
 
 console.log('Server is running');
