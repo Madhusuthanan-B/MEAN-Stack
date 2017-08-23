@@ -32,7 +32,7 @@ app.get('/info', function (req, res) {
         } else {
             console.log('Connection successful');
             getAdminData(db, function (result) {
-                res.send(result);
+                res.send(result[0]);
                 db.close();
             });
         }
@@ -47,5 +47,4 @@ var getAdminData = function (db, callback) {
     });
 }
 app.listen(port);
-
-console.log('Server is running:', port);
+console.log('Node server running in port:', port);

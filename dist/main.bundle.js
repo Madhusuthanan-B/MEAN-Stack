@@ -21,7 +21,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "a {\r\n    color: black;\r\n}", ""]);
 
 // exports
 
@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/about/about.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row page-body\">\r\n  <div class=\"col-lg-8 col-lg-offset-2\"> \r\n     <h1> About </h1>\r\n    <p>Hi, I'm madhu - A Bangalore based devloper. I love to work in JavaScript, JavaScript based frameworks and libraries.\r\n      My recent crush is on node js.\r\n    </p>\r\n    <p> <a href=\"https://madhusuthanan-b.github.io/Angular-4/#/\">Here</a> is another site im developing for exploring and exploiting angular 4 </p>\r\n    <p>To know more about me, click <a href=\"https://www.gitshowcase.com/madhusuthanan-b\">here</a> </p>\r\n    <p>If you want to follow me on twitter, then click <a href=\"https://twitter.com/madhuddeveloper\">here</a> </p>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"row page-body\">\r\n  <div class=\"col-lg-8 col-lg-offset-2\">\r\n    <h1> About </h1>\r\n    <ng-container *ngIf=\"!!adminInfo\">\r\n      <p>{{adminInfo.about}}</p>\r\n      <p> <a target=\"_blank\" href={{adminInfo.resources.angular4}}>Here</a> is another site im developing for exploring and exploiting\r\n        angular 4 </p>\r\n      <p>To know more about me, click <a target=\"_blank\" href=\"{{adminInfo.resources.gitshowcase}}\">here</a> </p>\r\n      <p>If you want to follow me on twitter, then click <a target=\"_blank\" href=\"{{adminInfo.resources.twitter}}\">here</a> </p>\r\n    </ng-container>\r\n\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -61,8 +61,10 @@ var AboutComponent = (function () {
         this.mongoSvc = mongoSvc;
     }
     AboutComponent.prototype.ngOnInit = function () {
-        this.mongoSvc.getAdminInfo().subscribe(function (res) {
-            console.log('Response from mongo:', res);
+        var _this = this;
+        this.mongoSvc.getAdminInfo().subscribe(function (info) {
+            _this.adminInfo = info;
+            console.log(_this.adminInfo);
         });
     };
     return AboutComponent;
@@ -88,14 +90,16 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about_component__ = __webpack_require__("../../../../../src/app/about/about.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_mongo_service__ = __webpack_require__("../../../../../src/app/services/mongo.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__about_component__ = __webpack_require__("../../../../../src/app/about/about.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_mongo_service__ = __webpack_require__("../../../../../src/app/services/mongo.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -107,10 +111,10 @@ var AboutModule = (function () {
 }());
 AboutModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
-        declarations: [__WEBPACK_IMPORTED_MODULE_2__about_component__["a" /* AboutComponent */]],
-        imports: [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* HttpModule */]],
-        providers: [__WEBPACK_IMPORTED_MODULE_3__services_mongo_service__["a" /* MongoService */]],
-        exports: [__WEBPACK_IMPORTED_MODULE_2__about_component__["a" /* AboutComponent */]]
+        declarations: [__WEBPACK_IMPORTED_MODULE_3__about_component__["a" /* AboutComponent */]],
+        imports: [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* HttpModule */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["b" /* CommonModule */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_4__services_mongo_service__["a" /* MongoService */]],
+        exports: [__WEBPACK_IMPORTED_MODULE_3__about_component__["a" /* AboutComponent */]]
     })
 ], AboutModule);
 
@@ -479,8 +483,9 @@ NavBarModule = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MongoService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -493,14 +498,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var SERVICE_URL = 'https://mean-heroku-app.herokuapp.com/info';
-// const SERVICE_URL = 'http://localhost:3000/info';
+
+var PROD_SERVICE_URL = 'https://mean-heroku-app.herokuapp.com/info';
+var DEV_SERVICE_URL = 'http://localhost:3000/info';
 var MongoService = (function () {
     function MongoService(http) {
         this.http = http;
+        this.url = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].production ? PROD_SERVICE_URL : DEV_SERVICE_URL;
     }
     MongoService.prototype.getAdminInfo = function () {
-        return this.http.get(SERVICE_URL).map(this.extractData);
+        return this.http.get(this.url).map(this.extractData);
     };
     MongoService.prototype.extractData = function (res) {
         return res.json();
