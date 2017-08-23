@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MongoService } from '../services/mongo.service';
 
 @Component({
   selector: 'app-about',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mongoSvc: MongoService) { }
 
   ngOnInit() {
+    this.mongoSvc.getAdminInfo().subscribe(res => {
+      console.log('Response from mongo:', res);
+    });
   }
 
 }
