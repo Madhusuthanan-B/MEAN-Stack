@@ -2,13 +2,12 @@
   <div class="col-lg-8 col-lg-offset-2">
     <h1> About </h1>
     <ng-container *ngIf="!!adminInfo">
-      <img [src]="'data:image/jpg;'+ adminInfo.image" class="rounded float-left" alt="madhu">
+      <img [src]="'data:image/jpeg;base64,'+ adminInfo.image" class="rounded float-left" alt="madhu">
       <p>{{adminInfo.about}}</p>
       <p> <a target="_blank" href={{adminInfo.resources.angular4}}>Here</a> is another site im developing for exploring and exploiting
         angular 4 </p>
       <p>To know more about me, click <a target="_blank" href="{{adminInfo.resources.gitshowcase}}">here</a> </p>
       <p>If you want to follow me on twitter, then click <a target="_blank" href="{{adminInfo.resources.twitter}}">here</a></p>
     </ng-container>
-
   </div>
 </div>
