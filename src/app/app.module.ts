@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { NavBarModule } from './navbar/navbar.module';
+import { HomeModule } from './home/index';
+import { routing, appRoutingProviders } from './app.routing';
 
 import { AppComponent } from './app.component';
 
@@ -10,9 +13,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    NavBarModule
+    NavBarModule,
+    HomeModule,
+    routing
   ],
-  providers: [],
+  providers: [appRoutingProviders, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
