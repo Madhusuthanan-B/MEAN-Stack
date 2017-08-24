@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/about/about.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row page-body\">\r\n  <div class=\"col-lg-8 col-lg-offset-2\">\r\n    <h1> About </h1>\r\n    <ng-container *ngIf=\"!!adminInfo\">\r\n      <img [src]=\"'data:image/jpeg;base64,'+ adminInfo.image\" class=\"rounded float-left\" alt=\"madhu\">\r\n      <p>{{adminInfo.about}}</p>\r\n      <p> <a target=\"_blank\" href={{adminInfo.resources.angular4}}>Here</a> is another site im developing for exploring and exploiting\r\n        angular 4 </p>\r\n      <p>To know more about me, click <a target=\"_blank\" href=\"{{adminInfo.resources.gitshowcase}}\">here</a> </p>\r\n      <p>If you want to follow me on twitter, then click <a target=\"_blank\" href=\"{{adminInfo.resources.twitter}}\">here</a></p>\r\n    </ng-container>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"row page-body\">\r\n  <div class=\"col-lg-8 col-lg-offset-1 text-center\">\r\n    <h1> About </h1>\r\n    <div *ngIf=\"showSpinner\" class=\"text-center\">\r\n      <i class=\"fa fa-spinner fa-spin fa-3x fa-fw margin-bottom\"></i>\r\n    </div>\r\n    <ng-container *ngIf=\"!!adminInfo\">\r\n      <img [src]=\"'data:image/jpeg;base64,'+ adminInfo.image\" class=\"rounded float-left\" alt=\"madhu\">\r\n      <p>{{adminInfo.about}}</p>\r\n      <p> <a target=\"_blank\" href={{adminInfo.resources.angular4}}>Here</a> is another site im developing for exploring and exploiting\r\n        angular 4 </p>\r\n      <p>To know more about me, click <a target=\"_blank\" href=\"{{adminInfo.resources.gitshowcase}}\">here</a> </p>\r\n      <p>If you want to follow me on twitter, then click <a target=\"_blank\" href=\"{{adminInfo.resources.twitter}}\">here</a></p>\r\n    </ng-container>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -59,12 +59,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AboutComponent = (function () {
     function AboutComponent(mongoSvc) {
         this.mongoSvc = mongoSvc;
+        this.showSpinner = true;
     }
     AboutComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.mongoSvc.getAdminInfo().subscribe(function (info) {
             _this.adminInfo = info;
-            console.log(_this.adminInfo);
+            _this.showSpinner = false;
         });
     };
     return AboutComponent;
@@ -299,7 +300,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-lg-8 col-lg-offset-2\"> \n     <h1> Home </h1>\n     <p>This application is used to demo a working MEAN stack app in heroku.</p>\n     <p>Try real time analytics with node and mongo</p>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-lg-8 col-lg-offset-1 text-center\"> \n     <h1> Home </h1>\n     <p>This application is used to demo a working MEAN stack app in heroku.</p>\n     <p>Try real time analytics with node and mongo</p>\n  </div>\n</div>"
 
 /***/ }),
 
