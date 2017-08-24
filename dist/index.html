@@ -44,11 +44,17 @@
 
     $(window).scroll(function (event) {
       var scroll = $(window).scrollTop();
-      if ((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) && scroll >= 40) {
+      var screenWidth = $(window).width();
+      var isMobile = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+      if ((isMobile && scroll >= 300) || (screenWidth <= 760 && scroll >= 300)) {
         $('.hamburger').hide();
       } else {
         $('.hamburger').show();
       }
+    });
+
+    $('.route').click(function () {
+      trigger.click();
     });
   });
 
