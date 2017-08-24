@@ -1,9 +1,8 @@
 <div class="row page-body">
   <div class="col-lg-8 col-lg-offset-1 text-center">
     <h1> About </h1>
-    <div *ngIf="showSpinner" class="text-center">
-      <i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i>
-    </div>
+    
+    <app-spinner [spinnerValue]="showSpinner$"></app-spinner>
     <ng-container *ngIf="!!adminInfo">
       <img [src]="'data:image/jpeg;base64,'+ adminInfo.image" class="rounded float-left" alt="madhu">
       <p>{{adminInfo.about}}</p>

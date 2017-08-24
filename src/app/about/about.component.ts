@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MongoService } from '../services/mongo.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-about',
@@ -9,14 +10,14 @@ import { MongoService } from '../services/mongo.service';
 export class AboutComponent implements OnInit {
 
   adminInfo: AdminInfo;
-  showSpinner = true;
+  showSpinner$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(private mongoSvc: MongoService) { }
 
   ngOnInit() {
     this.mongoSvc.getAdminInfo().subscribe((info: AdminInfo) => {
       this.adminInfo = info;
-      this.showSpinner = false;
+      this.showSpinner$.next(false);
     });
   }
 

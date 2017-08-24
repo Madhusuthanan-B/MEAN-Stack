@@ -5,8 +5,8 @@ import { NavBarModule } from './navbar/navbar.module';
 import { HomeModule } from './home/index';
 import { AboutModule } from './about/index';
 import { routing, appRoutingProviders } from './app.routing';
-
 import { AppComponent } from './app.component';
+
 
 @NgModule({
   declarations: [
