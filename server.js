@@ -17,10 +17,10 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static(__dirname + '../dist'));
+app.use(express.static(__dirname + '/dist'));
 
 app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname + '../dist/index.html'));
+    res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
 
 app.get('/info', (req, res) => {
