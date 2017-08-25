@@ -40,8 +40,31 @@ app.get('/info', function (req, res) {
 
 });
 
+app.get('/mean', function (req, res) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            console.log('Connection failed with error:', err);
+            res.send('Connection failed');
+        } else {
+            console.log('Connection successful');
+            getHomeData(db, function (result) {
+                res.send(result[0]);
+                db.close();
+            });
+        }
+    });
+
+});
+
 var getAdminData = function (db, callback) {
     var collection = (url === localDatabaseUrl) ? db.collection('Admin') : db.collection('about_admin');
+    collection.find({}).toArray(function (err, docs) {
+        callback(docs);
+    });
+}
+
+var getHomeData = function (db, callback) {
+    var collection =db.collection('Home');
     collection.find({}).toArray(function (err, docs) {
         callback(docs);
     });
