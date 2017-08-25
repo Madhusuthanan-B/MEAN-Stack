@@ -38,12 +38,12 @@ app.get('/info', (req, res) => {
 });
 
 app.get('/mean', (req, res) => {
-    MongoClient.connect(url, function (err, db) {
+    MongoClient.connect(url, (err, db) => {
         if (err) {
             console.log('Connection failed with error:', err);
             res.send('Connection failed');
         } else {
-            getHomeData(db, function (result) {
+            getHomeData(db, (result) => {
                 res.send(result[0]);
                 db.close();
             });
@@ -61,7 +61,7 @@ var getAdminData = (db, callback) => {
 
 var getHomeData = (db, callback) => {
     var collection = db.collection('Home');
-    collection.find({}).toArray(function (err, docs) {
+    collection.find({}).toArray((err, docs) => {
         callback(docs);
     });
 }
