@@ -305,7 +305,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-lg-8 col-lg-offset-1 text-center\">\n    <h1> Home </h1>\n    <app-spinner [spinnerValue]=\"showSpinner$\"></app-spinner>\n    <ng-container *ngIf=\"!!homePageInfo\">\n      <p>{{homePageInfo.page_description}}</p>\n    </ng-container>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-lg-8 col-lg-offset-1\">\n    <h1 class=\" text-center\"> Home </h1>\n    <app-spinner [spinnerValue]=\"showSpinner$\"></app-spinner>\n    <ng-container *ngIf=\"!!homePageInfo\">\n      <p class=\"text-center\">{{homePageInfo.page_description}}</p>\n      <div class=\"row\">\n        <h3>Site check list</h3>\n        <app-checkbox-list [checkBoxList]=\"checkboxList\"> </app-checkbox-list>\n      </div>\n    </ng-container>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -339,8 +339,17 @@ var HomeComponent = (function () {
         var _this = this;
         this.mongoSvc.getHomeInfo().subscribe(function (info) {
             _this.homePageInfo = info;
+            _this.createTodoList();
             _this.showSpinner$.next(false);
         });
+    };
+    HomeComponent.prototype.createTodoList = function () {
+        this.checkBoxes = this.homePageInfo.todo_list.map(function (x) {
+            return { id: '123', name: x.todo, value: x.todo, label: x.todo, checked: x.done, disabled: true };
+        });
+        this.checkboxList = {
+            checkboxes: this.checkBoxes
+        };
     };
     return HomeComponent;
 }());
@@ -366,14 +375,16 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__spinner_index__ = __webpack_require__("../../../../../src/app/spinner/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_mongo_service__ = __webpack_require__("../../../../../src/app/services/mongo.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_index__ = __webpack_require__("../../../../../src/app/modules/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_mongo_service__ = __webpack_require__("../../../../../src/app/services/mongo.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -386,10 +397,10 @@ var HomeModule = (function () {
 }());
 HomeModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
-        declarations: [__WEBPACK_IMPORTED_MODULE_3__home_component__["a" /* HomeComponent */]],
-        imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */], __WEBPACK_IMPORTED_MODULE_2__spinner_index__["a" /* SpinnerModule */]],
-        providers: [__WEBPACK_IMPORTED_MODULE_4__services_mongo_service__["a" /* MongoService */]],
-        exports: [__WEBPACK_IMPORTED_MODULE_3__home_component__["a" /* HomeComponent */]]
+        declarations: [__WEBPACK_IMPORTED_MODULE_4__home_component__["a" /* HomeComponent */]],
+        imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */], __WEBPACK_IMPORTED_MODULE_2__spinner_index__["a" /* SpinnerModule */], __WEBPACK_IMPORTED_MODULE_3__modules_index__["a" /* CheckBoxListModule */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_5__services_mongo_service__["a" /* MongoService */]],
+        exports: [__WEBPACK_IMPORTED_MODULE_4__home_component__["a" /* HomeComponent */]]
     })
 ], HomeModule);
 
@@ -420,6 +431,142 @@ var HomeRoutes = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_routes__ = __webpack_require__("../../../../../src/app/home/home.routes.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__home_routes__["a"]; });
 
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/modules/checkbox-list/checkbox-list.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/modules/checkbox-list/checkbox-list.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<ng-container *ngIf=\"enableCheckBoxList\">\n  <div class=\"form-check\" [ngClass]=\"{'disabled': checkbox.disabled}\" *ngFor=\"let checkbox of checkBoxList.checkboxes\">\n    <label class=\"form-check-label\">\n    <input id=\"{{checkbox.id}}\" class=\"form-check-input\" type=\"checkbox\" name=\"{{checkbox.name}}\" \n      value=\"{{checkbox.value}}\" [disabled]=\"checkbox.disabled\" [checked]=\"checkbox.checked\"\n      (change)=\"emitChange($event, checkbox)\">\n      {{checkbox.label}}\n    </label>\n  </div>\n</ng-container>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/modules/checkbox-list/checkbox-list.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckboxListComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CheckboxListComponent = (function () {
+    function CheckboxListComponent() {
+        this.selectedCheckBoxes = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+        this.enableCheckBoxList = false;
+        this.selectedItems = [];
+    }
+    CheckboxListComponent.prototype.ngOnInit = function () {
+        if (!!this.checkBoxList) {
+            this.enableCheckBoxList = true;
+        }
+    };
+    CheckboxListComponent.prototype.emitChange = function (event, item) {
+        item.checked = event.target.checked;
+        this.selectedItems = this.checkBoxList.checkboxes.filter(function (chkbox) { return chkbox.checked === true; });
+        this.selectedCheckBoxes.emit(this.selectedItems);
+    };
+    return CheckboxListComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], CheckboxListComponent.prototype, "checkBoxList", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
+    __metadata("design:type", Object)
+], CheckboxListComponent.prototype, "selectedCheckBoxes", void 0);
+CheckboxListComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-checkbox-list',
+        template: __webpack_require__("../../../../../src/app/modules/checkbox-list/checkbox-list.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/modules/checkbox-list/checkbox-list.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], CheckboxListComponent);
+
+//# sourceMappingURL=checkbox-list.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/modules/checkbox-list/checkbox-list.module.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckBoxListModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox_list_component__ = __webpack_require__("../../../../../src/app/modules/checkbox-list/checkbox-list.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var CheckBoxListModule = (function () {
+    function CheckBoxListModule() {
+    }
+    return CheckBoxListModule;
+}());
+CheckBoxListModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
+        declarations: [__WEBPACK_IMPORTED_MODULE_2__checkbox_list_component__["a" /* CheckboxListComponent */]],
+        imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]],
+        exports: [__WEBPACK_IMPORTED_MODULE_2__checkbox_list_component__["a" /* CheckboxListComponent */]]
+    })
+], CheckBoxListModule);
+
+//# sourceMappingURL=checkbox-list.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/modules/checkbox-list/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkbox_list_module__ = __webpack_require__("../../../../../src/app/modules/checkbox-list/checkbox-list.module.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__checkbox_list_module__["a"]; });
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/modules/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkbox_list_index__ = __webpack_require__("../../../../../src/app/modules/checkbox-list/index.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__checkbox_list_index__["a"]; });
 
 //# sourceMappingURL=index.js.map
 
