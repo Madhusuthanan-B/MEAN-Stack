@@ -59,18 +59,31 @@
 
     $('.blue').click(function () {
       $('body').css('background-color', '#1AB3B1');
+      blackfont();
     });
     $('.green').click(function () {
       $('body').css('background-color', '#1AB43F');
+      whitefont();
     });
     $('.pink').click(function () {
       $('body').css('background-color', '#e91e63');
+      blackfont();
     });
-     $('.default').click(function () {
+    $('.default').click(function () {
       $('body').css('background-color', '#1ab394');
+      whitefont();
     });
   });
 
-</script>
+  function blackfont() {
+    $('body').css('color', 'black');
+    $('p > a').css('color', '#FFFFFF');
+  }
 
+  function whitefont() {
+    $('body').css('color', '#FFFFFF');
+    $('p > a').css('color', 'black');
+  }
+
+</script>
 </html>
