@@ -305,7 +305,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-lg-8 col-lg-offset-1 text-center\"> \n     <h1> Home </h1>\n     <p>This application is used to demo a working MEAN stack app in heroku.</p>\n     <p>Try real time analytics with node and mongo</p>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-lg-8 col-lg-offset-1 text-center\">\n    <h1> Home </h1>\n    <app-spinner [spinnerValue]=\"showSpinner$\"></app-spinner>\n    <ng-container *ngIf=\"!!homePageInfo\">\n      <p>{{homePageInfo.page_description}}</p>\n    </ng-container>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -315,6 +315,9 @@ module.exports = "<div class=\"row\">\n  <div class=\"col-lg-8 col-lg-offset-1 t
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_mongo_service__ = __webpack_require__("../../../../../src/app/services/mongo.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -325,10 +328,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var HomeComponent = (function () {
-    function HomeComponent() {
+    function HomeComponent(mongoSvc) {
+        this.mongoSvc = mongoSvc;
+        this.showSpinner$ = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"](true);
     }
     HomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.mongoSvc.getHomeInfo().subscribe(function (info) {
+            _this.homePageInfo = info;
+            _this.showSpinner$.next(false);
+        });
     };
     return HomeComponent;
 }());
@@ -338,9 +350,10 @@ HomeComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/home/home.component.html"),
         styles: [__webpack_require__("../../../../../src/app/home/home.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_mongo_service__["a" /* MongoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_mongo_service__["a" /* MongoService */]) === "function" && _a || Object])
 ], HomeComponent);
 
+var _a;
 //# sourceMappingURL=home.component.js.map
 
 /***/ }),
@@ -351,13 +364,19 @@ HomeComponent = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__spinner_index__ = __webpack_require__("../../../../../src/app/spinner/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_mongo_service__ = __webpack_require__("../../../../../src/app/services/mongo.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 var HomeModule = (function () {
@@ -367,8 +386,10 @@ var HomeModule = (function () {
 }());
 HomeModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
-        declarations: [__WEBPACK_IMPORTED_MODULE_1__home_component__["a" /* HomeComponent */]],
-        exports: [__WEBPACK_IMPORTED_MODULE_1__home_component__["a" /* HomeComponent */]]
+        declarations: [__WEBPACK_IMPORTED_MODULE_3__home_component__["a" /* HomeComponent */]],
+        imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */], __WEBPACK_IMPORTED_MODULE_2__spinner_index__["a" /* SpinnerModule */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_4__services_mongo_service__["a" /* MongoService */]],
+        exports: [__WEBPACK_IMPORTED_MODULE_3__home_component__["a" /* HomeComponent */]]
     })
 ], HomeModule);
 
@@ -503,14 +524,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PROD_SERVICE_URL = 'https://mean-heroku-app.herokuapp.com/info';
-var DEV_SERVICE_URL = 'http://localhost:3000/info';
+var BASE_URL = 'https://mean-heroku-app.herokuapp.com';
 var MongoService = (function () {
     function MongoService(http) {
         this.http = http;
     }
+    MongoService.prototype.getHomeInfo = function () {
+        return this.http.get(BASE_URL + '/mean').map(this.extractData);
+    };
     MongoService.prototype.getAdminInfo = function () {
-        return this.http.get(PROD_SERVICE_URL).map(this.extractData);
+        return this.http.get(BASE_URL + '/info').map(this.extractData);
     };
     MongoService.prototype.extractData = function (res) {
         return res.json();

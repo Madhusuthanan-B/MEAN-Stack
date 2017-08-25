@@ -1,7 +1,9 @@
 <div class="row">
-  <div class="col-lg-8 col-lg-offset-1 text-center"> 
-     <h1> Home </h1>
-     <p>This application is used to demo a working MEAN stack app in heroku.</p>
-     <p>Try real time analytics with node and mongo</p>
+  <div class="col-lg-8 col-lg-offset-1 text-center">
+    <h1> Home </h1>
+    <app-spinner [spinnerValue]="showSpinner$"></app-spinner>
+    <ng-container *ngIf="!!homePageInfo">
+      <p>{{homePageInfo.page_description}}</p>
+    </ng-container>
   </div>
 </div>

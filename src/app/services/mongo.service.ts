@@ -3,16 +3,19 @@ import { Http, Response } from '@angular/http';
 import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/map';
 
-const PROD_SERVICE_URL = 'https://mean-heroku-app.herokuapp.com/info';
-const DEV_SERVICE_URL = 'http://localhost:3000/info';
+const BASE_URL = 'https://mean-heroku-app.herokuapp.com';
 
 @Injectable()
 export class MongoService {
 
   constructor(private http: Http) { }
 
+  getHomeInfo() {
+    return this.http.get(BASE_URL + '/mean').map(this.extractData);
+  }
+
   getAdminInfo() {
-    return this.http.get(PROD_SERVICE_URL).map(this.extractData);
+    return this.http.get(BASE_URL + '/info').map(this.extractData);
   }
 
   private extractData(res: Response) {

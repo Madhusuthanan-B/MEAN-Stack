@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MongoService } from '../services/mongo.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  homePageInfo: HomePage;
+  showSpinner$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+
+  constructor(private mongoSvc: MongoService) { }
 
   ngOnInit() {
+    this.mongoSvc.getHomeInfo().subscribe((info: HomePage) => {
+      this.homePageInfo = info;
+      this.showSpinner$.next(false);
+    });
   }
 
 }

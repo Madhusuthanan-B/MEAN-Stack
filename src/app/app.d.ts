@@ -11,3 +11,14 @@ interface Resources {
     angular4: string;
     sites: Array<string>;
 }
+
+interface HomePage {
+    page_description: string;
+    title: string;
+    todo_list: Array<Todo>
+}
+
+interface Todo {
+    todo: string;
+    done: boolean;
+}
