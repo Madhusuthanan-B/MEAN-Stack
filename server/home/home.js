@@ -1,7 +1,7 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
-const localDatabaseUrl = 'mongodb://localhost:27017/UsersDB';
-const url = process.env.MONGOLAB_URI || localDatabaseUrl;
+const config = require('../config/index.js');
+const url = config.mongoDB.url;
 
 function initHome(app) {
     app.get('/mean', (req, res) => {
