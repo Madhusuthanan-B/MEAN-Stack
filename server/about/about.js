@@ -1,7 +1,7 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
-const localDatabaseUrl = 'mongodb://localhost:27017/UsersDB';
-const url = process.env.MONGOLAB_URI || localDatabaseUrl;
+const config = require('../config/index.js');
+const url = config.mongoDB.url;
 
 function initAbout(app) {
     app.get('/info', (req, res) => {
@@ -20,7 +20,7 @@ function initAbout(app) {
 }
 
 var getAdminData = (db, callback) => {
-    var collection = (url === localDatabaseUrl) ? db.collection('Admin') : db.collection('about_admin');
+    var collection = (url === undefined) ? db.collection('Admin') : db.collection('about_admin');
     collection.find({}).toArray((err, docs) => {
         callback(docs);
     });
