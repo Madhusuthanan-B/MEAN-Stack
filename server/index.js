@@ -7,12 +7,10 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const localDatabaseUrl = 'mongodb://localhost:27017/UsersDB';
 const url = process.env.MONGOLAB_URI || localDatabaseUrl;
+const cors = require('./cors/index.js');
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+cors.init(app);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
