@@ -1,9 +1,17 @@
-Reusable Modules
+MEAN Stack App
 =============
 
 ![](https://circleci.com/gh/Madhusuthanan-B/MEAN-Stack.svg?style=shield&circle-token=:circle-token)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.2.
+
+Tools and Technologies
+=============
+- Angular 4
+- Node, Express
+- MongoDB
+- Circle CI for Continuous Integration
+- Heroku Cloud for Continuous Deployment
 
 Development Server
 =============
