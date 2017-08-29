@@ -31,5 +31,5 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Demo Site
 =============
 
-The site can be accessed by [clicking here](https://madhusuthanan-b.github.io/Angular-4/#/ )
+The site can be accessed by [clicking here](https://mean-heroku-app.herokuapp.com/#/ )
 
