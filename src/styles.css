@@ -296,3 +296,11 @@ html { height: 100%;}
     border-color: #1ab394;
     color: #FFFFFF;
 }
+.panel {
+    color: black;
+    font-weight: normal;
+    font-size: 13px;
+}
+.panel-primary>.panel-heading {
+    background-color: black;
+}

@@ -305,7 +305,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-lg-8 col-lg-offset-1\">\n    <h1 class=\" text-center\"> Home </h1>\n    <app-spinner [spinnerValue]=\"showSpinner$\"></app-spinner>\n    <ng-container *ngIf=\"!!homePageInfo\">\n      <p class=\"text-center\">{{homePageInfo.page_description}}</p>\n      <div class=\"row\">\n        <h3>Site check list</h3>\n        <app-checkbox-list [checkBoxList]=\"checkboxList\"> </app-checkbox-list>\n      </div>\n    </ng-container>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-sm-8 col-sm-offset-1\">\n    <h1 class=\" text-center\"> Home </h1>\n    <app-spinner [spinnerValue]=\"showSpinner$\"></app-spinner>\n    <ng-container *ngIf=\"!!homePageInfo\">\n      <p class=\"text-center\">{{homePageInfo.page_description}}</p>\n      <div class=\"row\">\n        <div class=\"col-sm-8 col-sm-offset-3\">\n          <div class=\"panel panel-primary\">\n            <div class=\"panel-heading\">\n              <h3 class=\"panel-title\">Todo items in this site</h3>\n            </div>\n            <div class=\"panel-body\">\n              <app-checkbox-list [checkBoxList]=\"checkboxList\"> </app-checkbox-list>\n            </div>\n          </div>\n          \n        </div>\n      </div>\n    </ng-container>\n  </div>\n</div>"
 
 /***/ }),
 
