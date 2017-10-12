@@ -1,0 +1,8 @@
+input{border:0px solid #000; margin:0; background:transparent; width:100%}
+table tr td{border-right:1px solid #000; border-bottom:1px solid #000; text-align: right;}
+table tr td input {text-align: right;}
+table{background: #fff none repeat scroll 0 0;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;}
+    table td:nth-child(even){background:#ffc61a;}
+    table td:nth-child(odd){background:#ccc;}

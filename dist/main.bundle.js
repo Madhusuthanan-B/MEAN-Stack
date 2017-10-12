@@ -223,14 +223,16 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__navbar_navbar_module__ = __webpack_require__("../../../../../src/app/navbar/navbar.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_index__ = __webpack_require__("../../../../../src/app/home/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__about_index__ = __webpack_require__("../../../../../src/app/about/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_routing__ = __webpack_require__("../../../../../src/app/app.routing.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__deal_analysis_index__ = __webpack_require__("../../../../../src/app/deal-analysis/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_routing__ = __webpack_require__("../../../../../src/app/app.routing.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -247,17 +249,18 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["M" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]
+            __WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_3__navbar_navbar_module__["a" /* NavBarModule */],
             __WEBPACK_IMPORTED_MODULE_4__home_index__["a" /* HomeModule */],
             __WEBPACK_IMPORTED_MODULE_5__about_index__["a" /* AboutModule */],
-            __WEBPACK_IMPORTED_MODULE_6__app_routing__["b" /* routing */]
+            __WEBPACK_IMPORTED_MODULE_6__deal_analysis_index__["a" /* DealAnalysisModule */],
+            __WEBPACK_IMPORTED_MODULE_7__app_routing__["b" /* routing */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_6__app_routing__["a" /* appRoutingProviders */], { provide: __WEBPACK_IMPORTED_MODULE_2__angular_common__["g" /* LocationStrategy */], useClass: __WEBPACK_IMPORTED_MODULE_2__angular_common__["d" /* HashLocationStrategy */] }],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_7__app_routing__["a" /* appRoutingProviders */], { provide: __WEBPACK_IMPORTED_MODULE_2__angular_common__["g" /* LocationStrategy */], useClass: __WEBPACK_IMPORTED_MODULE_2__angular_common__["d" /* HashLocationStrategy */] }],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -274,13 +277,233 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_index__ = __webpack_require__("../../../../../src/app/home/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about_index__ = __webpack_require__("../../../../../src/app/about/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__deal_analysis_index__ = __webpack_require__("../../../../../src/app/deal-analysis/index.ts");
 
 
 
-var appRoutes = __WEBPACK_IMPORTED_MODULE_1__home_index__["b" /* HomeRoutes */].concat(__WEBPACK_IMPORTED_MODULE_2__about_index__["b" /* AboutRoutes */]);
+
+var appRoutes = __WEBPACK_IMPORTED_MODULE_1__home_index__["b" /* HomeRoutes */].concat(__WEBPACK_IMPORTED_MODULE_2__about_index__["b" /* AboutRoutes */], __WEBPACK_IMPORTED_MODULE_3__deal_analysis_index__["b" /* DealAnalysisRoutes */]);
 var appRoutingProviders = [];
 var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* RouterModule */].forRoot(appRoutes);
 //# sourceMappingURL=app.routing.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/deal-analysis/deal-analysis.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "input{border:0px solid #000; margin:0; background:transparent; width:100%}\r\ntable tr td{border-right:1px solid #000; border-bottom:1px solid #000; text-align: right;}\r\ntable tr td input {text-align: right;}\r\ntable{background: #fff none repeat scroll 0 0;\r\n    border-left: 1px solid #000;\r\n    border-top: 1px solid #000;}\r\n    table td:nth-child(even){background:#ffc61a;}\r\n    table td:nth-child(odd){background:#ccc;}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/deal-analysis/deal-analysis.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h2> Deal analysis</h2>\r\n\r\n<!-- Reactive forms example start-->\r\n<!-- <form style=\"color:black\" novalidate [formGroup]=\"accuisitionAssumptionsUserChangeable\"> -->\r\n<!-- appValidateOnBlur [validateFormControl]=\"accuisitionAssumptionsUserChangeable.controls\"> -->\r\n<!-- <table cellpadding=\"0\" cellspacing=\"0\">\r\n        <tr>\r\n            <td><label for=\"purchasePrice\">Purchase Price $</label></td>\r\n            <td><input id=\"purchasePrice\" type=\"text\" placeholder=\"Purchase Price $\" formControlName=\"PurchasePriceInDollars\"></td>\r\n        </tr>\r\n        <tr>\r\n            <td><label for=\"purchasePrice\">Additional Amount 'In-Loan' $</label></td>\r\n            <td><input id=\"additionalAmountInLoan\" type=\"text\" placeholder=\"Additional Amount 'In-Loan' $\" formControlName=\"AdditionalAmountInLoanInDollars\"></td>\r\n        </tr>\r\n        <tr>\r\n            <td><label for=\"additionalAmntNotInLoan\">Additional Amount 'Not In-Loan' $</label></td>\r\n            <td><input id=\"additionalAmntNotInLoan\" type=\"text\" placeholder=\"Additional Amount 'Not In-Loan' $\" formControlName=\"AdditionalAmountNotInLoanInDollars\"></td>\r\n        </tr>\r\n        <tr>\r\n            <td><label for=\"downPayment\">Down Payment %</label></td>\r\n            <td><input id=\"downPayment\" type=\"text\" placeholder=\"Down Payment %\" formControlName=\"DownPaymentInPercentage\"></td>\r\n        </tr>\r\n        <tr>\r\n            <td><label for=\"interestRate\">Interest Rate %</label></td>\r\n            <td><input id=\"interestRate\" type=\"text\" placeholder=\"Interest Rate %\" formControlName=\"InterestRateInPercentage\"></td>\r\n        </tr>\r\n        <tr>\r\n            <td><label for=\"AmortiaztionInYears\">Amortiaztion (Yrs)</label></td>\r\n            <td><input id=\"AmortiaztionInYears\" type=\"text\" placeholder=\"Amortiaztion (Yrs)\" formControlName=\"AmortiaztionInYears\"></td>\r\n        </tr>\r\n        <tr>\r\n            <td><label for=\"LoanTermsInYears\">Loan Terms (Yrs)</label></td>\r\n            <td><input id=\"LoanTermsInYears\" type=\"text\" placeholder=\"Loan Terms (Yrs)\" formControlName=\"LoanTermsInYears\"></td>\r\n        </tr>\r\n        <tr>\r\n            <td><label for=\"ClosingCostsInPercentage\">Closing Costs %</label></td>\r\n            <td><input id=\"ClosingCostsInPercentage\" type=\"text\" placeholder=\"Closing Costs %\" formControlName=\"ClosingCostsInPercentage\"></td>\r\n        </tr>\r\n    </table> -->\r\n<!-- </form> -->\r\n<!-- Reactive forms example end-->\r\n\r\n<!-- Template driven forms example start-->\r\n<form style=\"color:black\">\r\n    <table cellpadding=\"0\" cellspacing=\"0\">\r\n        <tr>\r\n            <td>\r\n                <label for=\"purchasePrice\">Purchase Price $</label>\r\n            </td>\r\n            <td>\r\n                <input id=\"purchasePrice\" name=\"purchasePrice\" type=\"text\" placeholder=\"Purchase Price $\" [(ngModel)]=\"acquisitionAssumptionsUserChangeable.PurchasePriceInDollars\"\r\n                    (blur)=\"onBlurMethod()\">\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td>\r\n                <label for=\"purchasePrice\">Additional Amount 'In-Loan' $</label>\r\n            </td>\r\n            <td>\r\n                <input id=\"additionalAmountInLoan\" name=\"additionalAmountInLoan\" type=\"text\" placeholder=\"Additional Amount 'In-Loan' $\"\r\n                    [(ngModel)]=\"acquisitionAssumptionsUserChangeable.AdditionalAmountInLoanInDollars\" (blur)=\"onBlurMethod()\">\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td>\r\n                <label for=\"additionalAmntNotInLoan\">Additional Amount 'Not In-Loan' $</label>\r\n            </td>\r\n            <td>\r\n                <input id=\"additionalAmntNotInLoan\" name=\"additionalAmntNotInLoan\" type=\"text\" placeholder=\"Additional Amount 'Not In-Loan' $\"\r\n                    [(ngModel)]=\"acquisitionAssumptionsUserChangeable.AdditionalAmountNotInLoanInDollars\" (blur)=\"onBlurMethod()\">\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td>\r\n                <label for=\"downPayment\">Down Payment %</label>\r\n            </td>\r\n            <td>\r\n                <input id=\"downPayment\" name=\"downPayment\" type=\"text\" placeholder=\"Down Payment %\" [(ngModel)]=\"acquisitionAssumptionsUserChangeable.DownPaymentInPercentage\"\r\n                    (blur)=\"onBlurMethod()\">\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td>\r\n                <label for=\"interestRate\">Interest Rate %</label>\r\n            </td>\r\n            <td>\r\n                <input id=\"interestRate\" name=\"interestRate\" type=\"text\" placeholder=\"Interest Rate %\" [(ngModel)]=\"acquisitionAssumptionsUserChangeable.InterestRateInPercentage\"\r\n                    (blur)=\"onBlurMethod()\">\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td>\r\n                <label for=\"AmortiaztionInYears\">Amortiaztion (Yrs)</label>\r\n            </td>\r\n            <td>\r\n                <input id=\"AmortiaztionInYears\" name=\"AmortiaztionInYears\" type=\"text\" placeholder=\"Amortiaztion (Yrs)\" [(ngModel)]=\"acquisitionAssumptionsUserChangeable.AmortiaztionInYears\"\r\n                    (blur)=\"onBlurMethod()\">\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td>\r\n                <label for=\"LoanTermsInYears\">Loan Terms (Yrs)</label>\r\n            </td>\r\n            <td>\r\n                <input id=\"LoanTermsInYears\" name=\"LoanTermsInYears\" type=\"text\" placeholder=\"Loan Terms (Yrs)\" [(ngModel)]=\"acquisitionAssumptionsUserChangeable.LoanTermsInYears\"\r\n                    (blur)=\"onBlurMethod()\">\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td>\r\n                <label for=\"ClosingCostsInPercentage\">Closing Costs %</label>\r\n            </td>\r\n            <td>\r\n                <input id=\"ClosingCostsInPercentage\" name=\"ClosingCostsInPercentage\" type=\"text\" placeholder=\"Closing Costs %\"\r\n                    [(ngModel)]=\"acquisitionAssumptionsUserChangeable.ClosingCostsInPercentage\" (blur)=\"onBlurMethod()\">\r\n            </td>\r\n        </tr>\r\n    </table>\r\n</form>\r\n<!-- Template driven example end-->"
+
+/***/ }),
+
+/***/ "../../../../../src/app/deal-analysis/deal-analysis.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DealAnalysisComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_index__ = __webpack_require__("../../../../../src/app/models/index.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DealAnalysisComponent = (function () {
+    function DealAnalysisComponent(acquisitionAssumptionsUserChangeable) {
+        this.acquisitionAssumptionsUserChangeable = acquisitionAssumptionsUserChangeable;
+    }
+    DealAnalysisComponent.prototype.ngOnInit = function () {
+        // this.accuisitionAssumptionsUserChangeable = new FormGroup({
+        //     PurchasePriceInDollars: new FormControl(1500000),
+        //     AdditionalAmountInLoanInDollars: new FormControl('-'),
+        //     AdditionalAmountNotInLoanInDollars: new FormControl('-'),
+        //     DownPaymentInPercentage: new FormControl('25%'),
+        //     InterestRateInPercentage: new FormControl('4.75%'),
+        //     AmortiaztionInYears: new FormControl(25),
+        //     LoanTermsInYears: new FormControl(5),
+        //     ClosingCostsInPercentage: new FormControl('3%')
+        //   });
+        this.initializeAcquisitionAssumptionsUserChangeable();
+        console.log(this.acquisitionAssumptionsUserChangeable);
+    };
+    DealAnalysisComponent.prototype.initializeAcquisitionAssumptionsUserChangeable = function () {
+        this.acquisitionAssumptionsUserChangeable.PurchasePriceInDollars = 1500000;
+        this.acquisitionAssumptionsUserChangeable.AdditionalAmountInLoanInDollars = '-';
+        this.acquisitionAssumptionsUserChangeable.AdditionalAmountNotInLoanInDollars = '-';
+        this.acquisitionAssumptionsUserChangeable.DownPaymentInPercentage = '25%';
+        this.acquisitionAssumptionsUserChangeable.InterestRateInPercentage = '4.75%';
+        this.acquisitionAssumptionsUserChangeable.AmortiaztionInYears = 25;
+        this.acquisitionAssumptionsUserChangeable.LoanTermsInYears = 5;
+        this.acquisitionAssumptionsUserChangeable.ClosingCostsInPercentage = '3%';
+    };
+    DealAnalysisComponent.prototype.onBlurMethod = function () {
+        console.log(this.acquisitionAssumptionsUserChangeable);
+    };
+    return DealAnalysisComponent;
+}());
+DealAnalysisComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-deal',
+        template: __webpack_require__("../../../../../src/app/deal-analysis/deal-analysis.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/deal-analysis/deal-analysis.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__models_index__["a" /* AquisitionAssumptionsUserChangeable */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__models_index__["a" /* AquisitionAssumptionsUserChangeable */]) === "function" && _a || Object])
+], DealAnalysisComponent);
+
+var _a;
+//# sourceMappingURL=deal-analysis.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/deal-analysis/deal-analysis.module.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DealAnalysisModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__deal_analysis_component__ = __webpack_require__("../../../../../src/app/deal-analysis/deal-analysis.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_index__ = __webpack_require__("../../../../../src/app/directives/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_index__ = __webpack_require__("../../../../../src/app/models/index.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+// import { ReactiveFormsModule } from '@angular/forms';
+
+
+
+
+var DealAnalysisModule = (function () {
+    function DealAnalysisModule() {
+    }
+    return DealAnalysisModule;
+}());
+DealAnalysisModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
+        declarations: [__WEBPACK_IMPORTED_MODULE_3__deal_analysis_component__["a" /* DealAnalysisComponent */], __WEBPACK_IMPORTED_MODULE_4__directives_index__["a" /* ValidateOnBlurDirective */]],
+        imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_5__models_index__["a" /* AquisitionAssumptionsUserChangeable */]],
+        exports: [__WEBPACK_IMPORTED_MODULE_3__deal_analysis_component__["a" /* DealAnalysisComponent */]]
+    })
+], DealAnalysisModule);
+
+//# sourceMappingURL=deal-analysis.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/deal-analysis/deal-analysis.routes.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DealAnalysisRoutes; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__deal_analysis_component__ = __webpack_require__("../../../../../src/app/deal-analysis/deal-analysis.component.ts");
+
+var DealAnalysisRoutes = [
+    { path: 'deals', component: __WEBPACK_IMPORTED_MODULE_0__deal_analysis_component__["a" /* DealAnalysisComponent */] }
+];
+//# sourceMappingURL=deal-analysis.routes.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/deal-analysis/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__deal_analysis_module__ = __webpack_require__("../../../../../src/app/deal-analysis/deal-analysis.module.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__deal_analysis_module__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deal_analysis_routes__ = __webpack_require__("../../../../../src/app/deal-analysis/deal-analysis.routes.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__deal_analysis_routes__["a"]; });
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/directives/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__validate_on_blur_directive__ = __webpack_require__("../../../../../src/app/directives/validate-on-blur.directive.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__validate_on_blur_directive__["a"]; });
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/directives/validate-on-blur.directive.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ValidateOnBlurDirective; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ValidateOnBlurDirective = (function () {
+    function ValidateOnBlurDirective() {
+    }
+    ValidateOnBlurDirective.prototype.onFocusout = function (target) {
+        var _this = this;
+        console.log('Focus out called');
+        console.log(this.validateFormControl);
+        Object.keys(this.validateFormControl).map(function (x) {
+            console.log(_this.validateFormControl[x].value);
+        });
+    };
+    return ValidateOnBlurDirective;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])('validateFormControl'),
+    __metadata("design:type", Object)
+], ValidateOnBlurDirective.prototype, "validateFormControl", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])('focusout', ['$event.target']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ValidateOnBlurDirective.prototype, "onFocusout", null);
+ValidateOnBlurDirective = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Directive */])({ selector: '[appValidateOnBlur]' })
+], ValidateOnBlurDirective);
+
+//# sourceMappingURL=validate-on-blur.directive.js.map
 
 /***/ }),
 
@@ -431,6 +654,32 @@ var HomeRoutes = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_routes__ = __webpack_require__("../../../../../src/app/home/home.routes.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__home_routes__["a"]; });
 
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/models/aquisition-assumptions-user-changeable.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AquisitionAssumptionsUserChangeable; });
+var AquisitionAssumptionsUserChangeable = (function () {
+    function AquisitionAssumptionsUserChangeable() {
+    }
+    return AquisitionAssumptionsUserChangeable;
+}());
+
+//# sourceMappingURL=aquisition-assumptions-user-changeable.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/models/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__aquisition_assumptions_user_changeable__ = __webpack_require__("../../../../../src/app/models/aquisition-assumptions-user-changeable.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__aquisition_assumptions_user_changeable__["a"]; });
 
 //# sourceMappingURL=index.js.map
 

@@ -22,3 +22,14 @@ interface Todo {
     todo: string;
     done: boolean;
 }
+
+interface IAquisitionAssumptionsUserChangeable {
+    PurchasePriceInDollars: number;
+    AdditionalAmountInLoanInDollars: string;
+    AdditionalAmountNotInLoanInDollars: string;
+    DownPaymentInPercentage: string;
+    InterestRateInPercentage: string;
+    AmortiaztionInYears: number;
+    LoanTermsInYears: number;
+    ClosingCostsInPercentage: string;
+}

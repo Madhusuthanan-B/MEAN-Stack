@@ -1,0 +1,120 @@
+<h2> Deal analysis</h2>
+
+<!-- Reactive forms example start-->
+<!-- <form style="color:black" novalidate [formGroup]="accuisitionAssumptionsUserChangeable"> -->
+<!-- appValidateOnBlur [validateFormControl]="accuisitionAssumptionsUserChangeable.controls"> -->
+<!-- <table cellpadding="0" cellspacing="0">
+        <tr>
+            <td><label for="purchasePrice">Purchase Price $</label></td>
+            <td><input id="purchasePrice" type="text" placeholder="Purchase Price $" formControlName="PurchasePriceInDollars"></td>
+        </tr>
+        <tr>
+            <td><label for="purchasePrice">Additional Amount 'In-Loan' $</label></td>
+            <td><input id="additionalAmountInLoan" type="text" placeholder="Additional Amount 'In-Loan' $" formControlName="AdditionalAmountInLoanInDollars"></td>
+        </tr>
+        <tr>
+            <td><label for="additionalAmntNotInLoan">Additional Amount 'Not In-Loan' $</label></td>
+            <td><input id="additionalAmntNotInLoan" type="text" placeholder="Additional Amount 'Not In-Loan' $" formControlName="AdditionalAmountNotInLoanInDollars"></td>
+        </tr>
+        <tr>
+            <td><label for="downPayment">Down Payment %</label></td>
+            <td><input id="downPayment" type="text" placeholder="Down Payment %" formControlName="DownPaymentInPercentage"></td>
+        </tr>
+        <tr>
+            <td><label for="interestRate">Interest Rate %</label></td>
+            <td><input id="interestRate" type="text" placeholder="Interest Rate %" formControlName="InterestRateInPercentage"></td>
+        </tr>
+        <tr>
+            <td><label for="AmortiaztionInYears">Amortiaztion (Yrs)</label></td>
+            <td><input id="AmortiaztionInYears" type="text" placeholder="Amortiaztion (Yrs)" formControlName="AmortiaztionInYears"></td>
+        </tr>
+        <tr>
+            <td><label for="LoanTermsInYears">Loan Terms (Yrs)</label></td>
+            <td><input id="LoanTermsInYears" type="text" placeholder="Loan Terms (Yrs)" formControlName="LoanTermsInYears"></td>
+        </tr>
+        <tr>
+            <td><label for="ClosingCostsInPercentage">Closing Costs %</label></td>
+            <td><input id="ClosingCostsInPercentage" type="text" placeholder="Closing Costs %" formControlName="ClosingCostsInPercentage"></td>
+        </tr>
+    </table> -->
+<!-- </form> -->
+<!-- Reactive forms example end-->
+
+<!-- Template driven forms example start-->
+<form style="color:black">
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <label for="purchasePrice">Purchase Price $</label>
+            </td>
+            <td>
+                <input id="purchasePrice" name="purchasePrice" type="text" placeholder="Purchase Price $" [(ngModel)]="acquisitionAssumptionsUserChangeable.PurchasePriceInDollars"
+                    (blur)="onBlurMethod()">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="purchasePrice">Additional Amount 'In-Loan' $</label>
+            </td>
+            <td>
+                <input id="additionalAmountInLoan" name="additionalAmountInLoan" type="text" placeholder="Additional Amount 'In-Loan' $"
+                    [(ngModel)]="acquisitionAssumptionsUserChangeable.AdditionalAmountInLoanInDollars" (blur)="onBlurMethod()">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="additionalAmntNotInLoan">Additional Amount 'Not In-Loan' $</label>
+            </td>
+            <td>
+                <input id="additionalAmntNotInLoan" name="additionalAmntNotInLoan" type="text" placeholder="Additional Amount 'Not In-Loan' $"
+                    [(ngModel)]="acquisitionAssumptionsUserChangeable.AdditionalAmountNotInLoanInDollars" (blur)="onBlurMethod()">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="downPayment">Down Payment %</label>
+            </td>
+            <td>
+                <input id="downPayment" name="downPayment" type="text" placeholder="Down Payment %" [(ngModel)]="acquisitionAssumptionsUserChangeable.DownPaymentInPercentage"
+                    (blur)="onBlurMethod()">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="interestRate">Interest Rate %</label>
+            </td>
+            <td>
+                <input id="interestRate" name="interestRate" type="text" placeholder="Interest Rate %" [(ngModel)]="acquisitionAssumptionsUserChangeable.InterestRateInPercentage"
+                    (blur)="onBlurMethod()">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="AmortiaztionInYears">Amortiaztion (Yrs)</label>
+            </td>
+            <td>
+                <input id="AmortiaztionInYears" name="AmortiaztionInYears" type="text" placeholder="Amortiaztion (Yrs)" [(ngModel)]="acquisitionAssumptionsUserChangeable.AmortiaztionInYears"
+                    (blur)="onBlurMethod()">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="LoanTermsInYears">Loan Terms (Yrs)</label>
+            </td>
+            <td>
+                <input id="LoanTermsInYears" name="LoanTermsInYears" type="text" placeholder="Loan Terms (Yrs)" [(ngModel)]="acquisitionAssumptionsUserChangeable.LoanTermsInYears"
+                    (blur)="onBlurMethod()">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="ClosingCostsInPercentage">Closing Costs %</label>
+            </td>
+            <td>
+                <input id="ClosingCostsInPercentage" name="ClosingCostsInPercentage" type="text" placeholder="Closing Costs %"
+                    [(ngModel)]="acquisitionAssumptionsUserChangeable.ClosingCostsInPercentage" (blur)="onBlurMethod()">
+            </td>
+        </tr>
+    </table>
+</form>
+<!-- Template driven example end-->
